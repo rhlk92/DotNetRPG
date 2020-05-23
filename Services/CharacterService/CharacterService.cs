@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
 using DotNetRPG.Models;
 
@@ -10,15 +11,15 @@ namespace DotNetRPG.Services.CharacterService
             new Character(),
             new Character { Id = 1, Name = "Sam"}
         };
-        public List<Character> GetAllCharacters(){
+        public async Task<List<Character>> GetAllCharacters(){
             return characters;
         }
 
-        public Character GetCharacterById(int id){
+        public async Task<Character> GetCharacterById(int id){
             return characters.FirstOrDefault(c => c.Id == id);
         }
 
-        public List<Character> AddCharacter(Character character){
+        public async Task<List<Character>> AddCharacter(Character character){
             characters.Add(character);
             return characters;
         }
