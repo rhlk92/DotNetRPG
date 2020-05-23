@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using DotNetRPG.Services.CharacterService;
+using AutoMapper;
 
 namespace DotNetRPG
 {
@@ -27,6 +28,7 @@ namespace DotNetRPG
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ICharacterService, CharacterService>();
         }
 

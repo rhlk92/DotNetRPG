@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DotNetRPG.Models;
 using DotNetRPG.Services.CharacterService;
+using DotNetRPG.Dtos.Character;
 
 namespace DotNetRPG.Controllers
 {
@@ -17,11 +18,6 @@ namespace DotNetRPG.Controllers
             _characterService = characterService;
         }
 
-        private static List<Character> characters = new List<Character> {
-            new Character(),
-            new Character {Id=1, Name="Sam"}
-        };
-
         [HttpGet]
         public async Task<IActionResult> Get(){
             return Ok(await _characterService.GetAllCharacters());
@@ -33,7 +29,7 @@ namespace DotNetRPG.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> AddCharacter(Character newCharacter){
+        public async Task<IActionResult> AddCharacter(AddCharacterDto newCharacter){
             return Ok(await _characterService.AddCharacter(newCharacter));
         }
     }
