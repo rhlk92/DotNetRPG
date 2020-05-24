@@ -66,16 +66,16 @@ namespace DotNetRPG.Services.CharacterService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetCharacterDto>>> DeleteCharacter(int id)
+        public async Task<ServiceResponse<GetCharacterDto>> DeleteCharacter(int id)
         {
-            ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+            ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
             Character character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == id);
             if (character != null)
             {
                 _context.Characters.Remove(character);
                 await _context.SaveChangesAsync();
             }
-            serviceResponse.Data = (_context.Characters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
+            serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
             return serviceResponse;
         }
     }
