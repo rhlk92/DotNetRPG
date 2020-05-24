@@ -18,11 +18,6 @@ namespace DotNetRPG.Services.CharacterService
             _context = context;
             _mapper = mapper;
         }
-        private static List<Character> characters = new List<Character>
-        {
-            new Character(),
-            new Character { Id = 1, Name = "Sam"}
-        };
 
         public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
         {
